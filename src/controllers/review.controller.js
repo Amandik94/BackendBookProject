@@ -22,7 +22,7 @@ const createReview = async (req, res) => {
 const getReviewsByBook = async (req, res) => {
   try {
     const reviews = await Review.find({ book: req.params.bookId })
-      .populate('user', 'email')
+      .populate('user', 'username')
       .sort({ createdAt: -1 });
     res.json(reviews);
   } catch (err) {
