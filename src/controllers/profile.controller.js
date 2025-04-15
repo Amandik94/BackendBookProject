@@ -65,7 +65,10 @@ const removeFavoriteBook = async (req, res) => {
       return res.status(404).json({ message: 'Профиль не найден' });
     }
 
-    const bookIndex = profile.favoriteBooks.indexOf(bookId);
+    const bookIndex = profile.favoriteBooks.findIndex(favId =>
+      favId.toString() === bookId
+    );
+
     if (bookIndex === -1) {
       return res.status(400).json({ message: 'Эта книга не в избранном' });
     }
@@ -73,11 +76,16 @@ const removeFavoriteBook = async (req, res) => {
     profile.favoriteBooks.splice(bookIndex, 1);
     await profile.save();
 
-    res.status(200).json({ message: 'Книга удалена из избранного', favoriteBooks: profile.favoriteBooks });
+    res.status(200).json({
+      message: 'Книга удалена из избранного',
+      favoriteBooks: profile.favoriteBooks,
+    });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: 'Ошибка при удалении книги из избранного' });
   }
 };
+
 
 // Получить все избранные книги пользователя
 const getFavoriteBooks = async (req, res) => {
