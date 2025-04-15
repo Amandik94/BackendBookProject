@@ -48,7 +48,7 @@ const profilePaths = {
         ],
       },
     },
-    "/api/profile/favoriteBooks": {
+    "/api/profile/me/favorites": {
       get: {
         summary: "Получить избранные книги пользователя",
         tags: ["Profile"],
@@ -101,7 +101,7 @@ const profilePaths = {
         ]
       },
     },
-    "/api/profile/favoriteBooks/{bookId}": {
+    "/api/profile/me/favorites/{bookId}": {
       delete: {
         summary: "Удалить книгу из избранного",
         tags: ["Profile"],

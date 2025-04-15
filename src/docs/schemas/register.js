@@ -1,8 +1,8 @@
 const registerUserSchema = {
     type: "object",
-    required: ["username", "email", "password"],
+    required: ["user", "email", "password"],
     properties: {
-      username: {
+      user: {
         type: "string",
         example: "booklover99"
       },
